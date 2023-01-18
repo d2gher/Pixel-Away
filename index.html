@@ -5,16 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <script src="/script.js" defer></script>
     <title>Etch a Sketch</title>
 </head>
 <body>
-    <header>Title</header>
+    <header>Pixel-Away</header>
     <div class="content">
         <div id="container"></div>
         <div id="controls">
-            <button id="resize-button">Resize grid</button>
-            <button id="reset-button">Clean grid</button>
+            <div>
+                <input id="brushPicker" type="color" value="#000000"/>
+                <label id="">Brush Color</label>
+            </div>
+            <div>
+                <input id="canvasPicker" type="color" value="#ffffff"/>
+                <label id="">Canvas Color</label>
+            </div>
+            <button id="reset-button">Clean</button>
+            <button id="toggle-grid">Toggle grid</button>
+            <input id="slider" type="range" min="1" max="100" value="16" class="slider" id="myRange">
+            <label id="slider-label"></label>
         </div>
     </div>
 </body>

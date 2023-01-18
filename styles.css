@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'VT323', monospace;
 }
 
 body {
@@ -9,23 +10,76 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    width: 80px;
+    height: 40px;
+    border: none;
+}
+
+input[type="color"]:hover {
+    cursor: pointer;
+}
+
+#slider-label {
+    font-size: 24px;
+}
+
+#slider {
+    width: 200px;
+    height: 15px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0);
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgb(0, 0, 0);
+}
+  
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #000000;
+    cursor: pointer;
+}
+
+
+header {
+    font-size: 50px;
 }
 
 .content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    column-gap: 100px;
+    column-gap: 60px;
+    row-gap: 50px;
 }
 
 #controls {
-    background-color: gray;
     width: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 20px;
+    row-gap: 15px;
+}
+
+#controls div {
+    display: flex;
+    width: 200px;
+    justify-content: flex-start;
+    align-items: center;
+}
+#controls div label {
+    font-size: 20px;
+    padding: 10px
 }
 
 button {
@@ -34,7 +88,13 @@ button {
     font-size: 26px;
     background-color:#00000000;
     border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    transition: scale .2s;
+}
+
+button:hover {
+    scale: 1.1;
+    cursor: pointer;
 }
 
 #container {
@@ -46,7 +106,7 @@ button {
     box-shadow: 1px 1px 10px #0000005c;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
     #container {
         width: 50vh;
     }
@@ -54,7 +114,7 @@ button {
 
 @media (max-width: 500px) {
     #container {
-        width: 35vh;
+        width: 40vh;
     }
 }
 
@@ -64,11 +124,12 @@ button {
 }
 
 .div {
-    border: 0.01px solid rgba(128, 128, 128, 0.171);
     flex: 1 1 auto;
+    /* background-color: #ffffff; */
 }
 
-.div.painted {
-    background-color: white;
+
+.div.grid {
+    border: 0.01px solid rgba(128, 128, 128, 0.171);
 }
 
