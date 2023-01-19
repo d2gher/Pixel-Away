@@ -16,6 +16,7 @@ const canvas_picker = document.querySelector("#canvasPicker");
 const container = document.querySelector("#container");
 const toggle_grid = document.querySelector("#toggle-grid");
 const eraser_button = document.querySelector("#eraser-button");
+const color_grab_button= document.querySelector("#color-grab-button");
 
 
 let mouse_down = false;
@@ -30,14 +31,13 @@ slider.addEventListener('input', function() {
     update_slider_label(this.value);
 })
 
-brush_picker.addEventListener("change", change_brush_color)
-canvas_picker.addEventListener("change", change_canvas_color)
-reset_button.addEventListener("click", clear_grid)
-toggle_grid.addEventListener("click", show_hide_grid)
+brush_picker.addEventListener("change", change_brush_color);
+canvas_picker.addEventListener("change", change_canvas_color);
+reset_button.addEventListener("click", clear_grid);
+toggle_grid.addEventListener("click", show_hide_grid);
+eraser_button.addEventListener("click", change_mode);
+color_grab_button.addEventListener("click", change_mode);
 
-console.log(mode)
-eraser_button.addEventListener("click", change_mode)
-console.log(mode)
 function create_grid(size) {
     container.innerHTML = "";
     for(let i = 0; i < size; i++) {
@@ -66,6 +66,12 @@ function change_color(e) {
     if (e.type == "mouseover" && !mouse_down) return;
     if (mode == "drawing") e.target.style.backgroundColor = brush_color;
     if (mode == "erasing") e.target.style.backgroundColor = background_color;
+    if (mode == "color-grabbing") {
+        brush_color = e.target.style.backgroundColor;
+        brush_picker.value = rgba2hex(brush_color);
+        mode = "drawing";
+        color_grab_button.classList.remove("active");
+    }
 }
 
 function show_hide_grid() {
@@ -101,14 +107,19 @@ function clear_grid() {
 }
 
 function change_mode() {
+    color_grab_button.classList.remove("active");
+    eraser_button.classList.remove("active");
     if (this == eraser_button) {
-        if (mode == "drawing") {
+        if (mode != "erasing") {
             mode = "erasing";
             this.classList.add("active")
-        } else {
-            mode = "drawing";
-            this.classList.remove("active")
-        }
+        } else mode = "drawing";
+    }
+    if (this == color_grab_button) {
+        if (mode != "color-grabbing") {
+            mode = "color-grabbing";
+            this.classList.add("active")
+        } else mode = "drawing";
     }
 }
 
