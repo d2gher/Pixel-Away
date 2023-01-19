@@ -2,7 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', Arial, Helvetica, sans-serif;
+    color: rgb(58, 58, 58);
 }
 
 body {
@@ -11,7 +12,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 input[type="color"] {
@@ -52,6 +53,7 @@ input[type="color"]:hover {
 
 header {
     font-size: 50px;
+    padding: 10px 0;
 }
 
 .content {
@@ -59,7 +61,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-around;
     column-gap: 60px;
-    row-gap: 50px;
+    row-gap: 20px;
 }
 
 #controls {
@@ -68,7 +70,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 15px;
+    row-gap: 7px;
 }
 
 #controls div {
@@ -99,7 +101,6 @@ button:hover {
 button.active {
     color: white;
     background-color: rgb(58, 58, 58);
-    border: 1px solid rgb(255, 255, 255);
 }
 
 #container {
