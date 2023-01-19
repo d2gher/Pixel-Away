@@ -39,6 +39,7 @@ eraser_button.addEventListener("click", change_mode);
 color_grab_button.addEventListener("click", change_mode);
 
 function create_grid(size) {
+    if (size > 64) size = 64;
     container.innerHTML = "";
     for(let i = 0; i < size; i++) {
         const row_div = document.createElement("div");
