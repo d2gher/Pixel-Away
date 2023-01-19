@@ -88,7 +88,6 @@ button {
     font-size: 26px;
     background-color:#00000000;
     border: 1px solid rgb(0, 0, 0);
-    /* border-radius: 5px; */
     transition: scale .2s;
 }
 
@@ -100,6 +99,7 @@ button:hover {
 button.active {
     color: white;
     background-color: rgb(58, 58, 58);
+    border: 1px solid rgb(255, 255, 255);
 }
 
 #container {
@@ -130,7 +130,6 @@ button.active {
 
 .div {
     flex: 1 1 auto;
-    /* background-color: #ffffff; */
 }
 
 

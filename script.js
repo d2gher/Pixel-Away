@@ -72,9 +72,11 @@ function show_hide_grid() {
     const divs = document.querySelectorAll(".div");
     if(grid != true) {
         divs.forEach(div => div.classList.add("grid"));
+        toggle_grid.classList.add("active");
         grid = true;
     } else {
         divs.forEach(div => div.classList.remove("grid"));
+        toggle_grid.classList.remove("active");
         grid = false;
     }
 }
