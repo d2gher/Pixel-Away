@@ -5,9 +5,9 @@ const DEFAULT_GRID_SIZE = 16;
 let brush_color = DEFAULT_BRUCH_COLOR;
 let background_color = DEFAULT_BACKGROUND_COLOR;
 let grid_size = DEFAULT_GRID_SIZE;
+let mode = "drawing"
 let grid = true;
 
-// const container = document.querySelector("#container");
 const reset_button = document.querySelector("#reset-button");
 const slider = document.querySelector("#slider");
 const slider_label = document.querySelector("#slider-label");
@@ -15,6 +15,7 @@ const brush_picker = document.querySelector("#brushPicker");
 const canvas_picker = document.querySelector("#canvasPicker");
 const container = document.querySelector("#container");
 const toggle_grid = document.querySelector("#toggle-grid");
+const eraser_button = document.querySelector("#eraser-button");
 
 
 let mouse_down = false;
@@ -31,13 +32,12 @@ slider.addEventListener('input', function() {
 
 brush_picker.addEventListener("change", change_brush_color)
 canvas_picker.addEventListener("change", change_canvas_color)
-reset_button.addEventListener("click", function() {
-    const divs = document.querySelectorAll(".div");
-    divs.forEach(element => element.style.backgroundColor = background_color);
-})
-
+reset_button.addEventListener("click", clear_grid)
 toggle_grid.addEventListener("click", show_hide_grid)
 
+console.log(mode)
+eraser_button.addEventListener("click", change_mode)
+console.log(mode)
 function create_grid(size) {
     container.innerHTML = "";
     for(let i = 0; i < size; i++) {
@@ -64,16 +64,17 @@ function update_slider_label(size) {
 
 function change_color(e) {
     if (e.type == "mouseover" && !mouse_down) return;
-    e.target.style.backgroundColor = brush_color;
+    if (mode == "drawing") e.target.style.backgroundColor = brush_color;
+    if (mode == "erasing") e.target.style.backgroundColor = background_color;
 }
 
 function show_hide_grid() {
     const divs = document.querySelectorAll(".div");
     if(grid != true) {
-        divs.forEach(div => div.classList.add("grid"))
+        divs.forEach(div => div.classList.add("grid"));
         grid = true;
     } else {
-        divs.forEach(div => div.classList.remove("grid"))
+        divs.forEach(div => div.classList.remove("grid"));
         grid = false;
     }
 }
@@ -90,6 +91,23 @@ function change_canvas_color() {
         }
     })    
     background_color = this.value;
+}
+
+function clear_grid() {
+    const divs = document.querySelectorAll(".div");
+    divs.forEach(element => element.style.backgroundColor = background_color);
+}
+
+function change_mode() {
+    if (this == eraser_button) {
+        if (mode == "drawing") {
+            mode = "erasing";
+            this.classList.add("active")
+        } else {
+            mode = "drawing";
+            this.classList.remove("active")
+        }
+    }
 }
 
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
