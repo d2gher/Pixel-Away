@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="script.js" defer></script>
     <title>Pixel-Away!</title>
 </head>
@@ -31,7 +33,32 @@
             <button id="toggle-grid" class="active">Grid</button>
             <input id="slider" type="range" min="1" max="64" value="16" class="slider" id="myRange">
             <label id="slider-label"></label>
+            <button id="btn-Preview-Image">Download Image</button>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+
+
+            var element = $("#container"); // global variable
+            var getCanvas; // global variable
+            var newData;
+
+            $("#btn-Preview-Image").on('click', function() {
+                html2canvas(element, {
+                    onrendered: function(canvas) {
+                        getCanvas = canvas;
+                        var imgageData = getCanvas.toDataURL("image/png");
+                        var a = document.createElement("a");
+                        a.href = imgageData; //Image Base64 Goes here
+                        a.download = "Image.png"; //File name Here
+                        a.click(); //Downloaded file
+                    }
+                });
+            });
+
+
+        });
+    </script>
 </body>
 </html>

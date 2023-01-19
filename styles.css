@@ -31,7 +31,7 @@ input[type="color"]:hover {
 }
 
 #slider {
-    width: 200px;
+    width: 180px;
     height: 15px;
     -webkit-appearance: none;
     background: rgba(255, 255, 255, 0);
@@ -75,18 +75,18 @@ header {
 
 #controls div {
     display: flex;
-    width: 200px;
+    width: 180px;
     justify-content: flex-start;
     align-items: center;
 }
 #controls div label {
     font-size: 20px;
-    padding: 10px
+    padding-left: 4px
 }
 
 button {
-    width: 200px;
-    height: 40px;
+    width: 180px;
+    height: 30px;
     font-size: 26px;
     background-color:#00000000;
     border: 1px solid rgb(0, 0, 0);
